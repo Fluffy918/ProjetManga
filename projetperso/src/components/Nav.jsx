@@ -30,7 +30,7 @@ function Nav() {
                 <ul className="md:hidden flex flex-col bg-gray-800 p-4 space-y-2">
                     <li><Link to="/" className="block py-2 hover:text-gray-300">Accueil</Link></li>
                     <li><Link to="/mangas" className="block py-2 hover:text-gray-300">Annuaire des Mangas</Link></li>
-                    <li><Link to="/chapitres" className="block py-2 hover:text-gray-300">Derniers chapitres</Link></li>
+                    <li><Link to="/manga" className="block py-2 hover:text-gray-300">Derniers chapitres</Link></li>
                 </ul>
             )}
         </nav>

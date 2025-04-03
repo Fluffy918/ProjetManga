@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "../MangasList.css"
+import { Link } from "react-router-dom";
 
 function MangaList() {
     const [mangas, setMangas] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/mangas')
+        fetch('http://localhost:5174/mangas')
             .then(res => res.json())
             .then(data => setMangas(data))
             .catch(error => console.error('Erreur lors du chargement du mangas:', error)
@@ -18,7 +19,9 @@ function MangaList() {
             <div className="mangas-container">
                 {mangas.map(manga => (
                     <div key={manga.id} className="manga-card">
-                        <img src={manga.couverture} alt={manga.titre} width={150} />
+                        <Link to={`/mangas/${manga.id}`}>
+                        <img src={manga.couverture} alt={manga.titre} width={150}/>
+                        </Link>
                         <h3>{manga.tittre}</h3>
                         <p>{manga.description}</p>
                         <p>{manga.auteur}</p>
