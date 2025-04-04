@@ -2,7 +2,7 @@ import express from "express"
 import path from 'path'
 import { fileURLToPath } from "url"
 import pool from "./database/bdd.js"
-import mysql from "mysql2"
+import mysql from "mysql2/promise"
 import cors from "cors"
 
 const __filename = fileURLToPath(import.meta.url) // Utilise import.meta.url pour obtenir l'URL du fichier
@@ -58,8 +58,14 @@ app.get('/api/mangas/:mangaId', (req, res) => {
         } else {
             res.status(404).json({ message: 'Aucun chapitre trouvé pour ce manga' })
         }
-        
     })
+})
+
+app.get('/api/mangas/:manga_id', (req, res) => {
+    const manga_id = req.params.manga_id
+    console.log("mangaId reçu :", manga_id);
+
+    const query = 'SELECT * FROM chapitres WHERE manga_id = ?'
 })
 
 app.use(express.static(path.join(__dirname, 'public')))
