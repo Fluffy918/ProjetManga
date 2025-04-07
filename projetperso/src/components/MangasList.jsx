@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../MangasList.css"
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 function MangaList() {
     const [mangas, setMangas] = useState([])
@@ -29,9 +30,7 @@ function MangaList() {
                     </div>
                 ))}
             </div>
-            <footer className="footer">
-                <p>Copyright &copy; 2025 MangaVerse - Tous droits réservés</p>
-            </footer>
+            <Footer/>
         </>
     )
 }

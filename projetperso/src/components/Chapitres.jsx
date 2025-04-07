@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "./Nav";
+import Footer from "./Footer";
 import "../Chapitres.css";
 
 function Chapitres() {
@@ -40,7 +41,7 @@ function Chapitres() {
                     ))}
                 </ul>
             </div>
-        
+            <Footer/>        
         </>
         
     )
