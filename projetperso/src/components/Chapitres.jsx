@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Nav from "./Nav";
 import "../Chapitres.css";
 
 function Chapitres() {
@@ -20,20 +21,28 @@ function Chapitres() {
     }, [mangaId])
 
     return (
-        <div className="chapitres-container">
-            <h2>
-                Liste des chapitres
-            </h2>
-            <ul className="chapitres-list">
-                {chapitres.map(chapitre => (
-                    <li key={chapitre.id}>
-                        <a href={chapitre.url} target="_blank" rel="noopener noreferrer">
-                            Chapitre {chapitre.numero}: {chapitre.titre}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <Nav/>
+            <br />
+            <br />
+            <br />
+            <div className="chapitres-container">
+                <h2>
+                    Liste des chapitres
+                </h2>
+                <ul className="chapitres-list">
+                    {chapitres.map(chapitre => (
+                        <li key={chapitre.id}>
+                            <a href={chapitre.url} target="_blank" rel="noopener noreferrer">
+                                Chapitre {chapitre.numero}: {chapitre.titre}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        
+        </>
+        
     )
 }
 
