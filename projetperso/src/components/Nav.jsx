@@ -3,8 +3,18 @@ import { Link } from "react-router-dom"
 import { Menu, X, Search } from "lucide-react"
 import "../style.css" 
 
+
+
+
 function Nav() {
     const [isOpen, setIsOpen] = useState(false)
+    const [searchQuery, setSearchQuery] = useState("")
+
+    function handleSearch() {
+        if (searchQuery.trim()) {
+            window.location.href = `/mangas?search=${encodeURIComponent(searchQuery.trim())}`
+        }
+    }
     
     return(
         <nav className="bg-gray-900 text-white p-4 shadow-lg fixed w-full top-0 z-50">
@@ -17,9 +27,13 @@ function Nav() {
                     <li><Link to="/mangas" className="hover:text-gray-300 transition">Derniers chapitres</Link></li>
                 </ul>
 
-                <button className="hidden md:block hover:text-gray-300 transition">
-                    <Search size={24}/>
-                </button>
+                <div className="search-container">
+                    <input type="text" placeholder="Rechercher un manga..." className="search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                    <button onClick={handleSearch} className="hidden md:block hover:text-gray-300 transition">
+                        <Search size={24}/>
+                    </button>
+                </div>
+                
 
                 <button className="md:hidden focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? <X size={28}/> : <Menu size={28}/>}
