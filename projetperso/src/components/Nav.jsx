@@ -12,9 +12,9 @@ function Nav() {
                 <h1 className="text-2x1 font-bold">Scan VF</h1>
                 
                 <ul className="hidden md:flex gap-6 text-lg">
-                    <li><Link to="/" className="hover:text-gray-300 transition">Accueil</Link></li>
-                    <li><Link to="/" className="hover:text-gray-300 transition">Annuaire des Mangas</Link></li>
-                    <li><Link to="/" className="hover:text-gray-300 transition">Derniers chapitres</Link></li>
+                    <li><Link to="/mangas" className="hover:text-gray-300 transition">Accueil</Link></li>
+                    <li><Link to="/mangas" className="hover:text-gray-300 transition">Annuaire des Mangas</Link></li>
+                    <li><Link to="/mangas" className="hover:text-gray-300 transition">Derniers chapitres</Link></li>
                 </ul>
 
                 <button className="hidden md:block hover:text-gray-300 transition">

@@ -29,7 +29,6 @@ async function insertChapitres() {
     }
     console.log("Chapitre insérés avec succès");
     connection.end()
-    
 }
 
 
