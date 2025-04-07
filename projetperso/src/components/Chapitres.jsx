@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "../Chapitres.css";
 
 function Chapitres() {
     const {mangaId} = useParams()
@@ -19,11 +20,11 @@ function Chapitres() {
     }, [mangaId])
 
     return (
-        <div>
+        <div className="chapitres-container">
             <h2>
                 Liste des chapitres
             </h2>
-            <ul>
+            <ul className="chapitres-list">
                 {chapitres.map(chapitre => (
                     <li key={chapitre.id}>
                         <a href={chapitre.url} target="_blank" rel="noopener noreferrer">

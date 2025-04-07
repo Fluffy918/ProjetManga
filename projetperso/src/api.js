@@ -1,5 +1,3 @@
-import { data } from "react-router-dom";
-
 const API_URL = "http://localhost:5174";
 
 export async function fetchMangas() {
@@ -23,6 +21,22 @@ export async function fetchMangas() {
     } catch (error) {
         console.error('Erreur lors du chargement des mangas:', error);
         return [];
+        
+    }
+}
+
+export async function fetchMangasDbz() {
+    try {
+        const res = await fetch(`${API_URL}/mangas/dbz`)
+        if (!res.ok) {
+            throw new Error(`Erreur HTTP: ${res.status}`)
+        }
+        const data = await res.json()
+        console.log('Données DBZ:', data);
+        return data;
+    } catch (error) {
+        console.error('Erreur lors du chargement des mangas:', error);
+        return []
         
     }
 }

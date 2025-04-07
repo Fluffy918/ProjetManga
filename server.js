@@ -2,8 +2,9 @@ import express from "express"
 import path from 'path'
 import { fileURLToPath } from "url"
 import pool from "./database/bdd.js"
-import mysql from "mysql2/promise"
+import mysql from "mysql2"
 import cors from "cors"
+import { error } from "console"
 
 const __filename = fileURLToPath(import.meta.url) // Utilise import.meta.url pour obtenir l'URL du fichier
 const __dirname = path.dirname(__filename) // // Utilise path.dirname pour obtenir le répertoire
@@ -61,18 +62,29 @@ app.get('/api/mangas/:mangaId', (req, res) => {
     })
 })
 
-app.get('/api/mangas/:manga_id', (req, res) => {
-    const manga_id = req.params.manga_id
-    console.log("mangaId reçu :", manga_id);
-
-    const query = 'SELECT * FROM chapitres WHERE manga_id = ?'
-})
+//app.get('/api/mangas/:mangaId', (req, res) => {
+//    const mangaId = req.params.mangaId
+//    console.log("mangaId reçu :", mangaId);
+//
+//    const query = 'SELECT * FROM chapitres WHERE manga_id = ?'
+//    db.query(query, [mangaId], (err, results) => {
+//        if (err) {
+//            console.error(err)
+//            res.status(500).json({message: 'Erreur serveur'})
+//        }
+//        if (results.length > 0) {
+//            res.json(results)
+//        } else {
+//            res.status(404).json({message: 'Aucun chapitre trouvé pour ce manga'})
+//        }
+//    })
+//})
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'))
 })
-app.post('api/mangas', async (req, res) => {
+app.post('/api/mangas', async (req, res) => {
     try {
         const {manga_id, numero, titre, date_sortie, url} = req.body
         if (!manga_id || !numero || !titre || !date_sortie || !url) {
@@ -93,6 +105,8 @@ app.post('api/mangas', async (req, res) => {
 })
 
 
+
+
 const PORT = 5174
 
 app.listen(PORT, () => {
@@ -108,3 +122,5 @@ app.listen(PORT, () => {
 //    console.log(`Exemple app listening on port ${port}`);
 //    
 //})
+
+export default db

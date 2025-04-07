@@ -29,6 +29,9 @@ function MangaList() {
                     </div>
                 ))}
             </div>
+            <footer className="footer">
+                <p>Copyright &copy; 2025 MangaVerse - Tous droits réservés</p>
+            </footer>
         </>
     )
 }
