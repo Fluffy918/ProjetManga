@@ -1,5 +1,5 @@
 import axios from 'axios'
-import cheerio from 'cheerio'
+import * as cheerio from 'cheerio'
 import db from './server.js'
 
 const mangaId = 1
@@ -21,7 +21,7 @@ async function scrapeChapitres() {
 
         const chapitres = []
 
-        $('.chapitres-list a').each((index, element) => {
+        $('a[href*="/one_piece/chapitre-"]').each((index, element) => {
             const titreComplet = $(element).text().trim()
             const href = $(element).attr('href')
             const match = titreComplet.match(/(\d+)/)
@@ -31,7 +31,7 @@ async function scrapeChapitres() {
                 chapitres.push({
                     numero,
                     titre: titreComplet,
-                    url: 'https://www.scan-vf.net' + href
+                    url: href.startsWith('http') ? href : 'https://www.scan-vf.net' + href
                 })
             }
         })
