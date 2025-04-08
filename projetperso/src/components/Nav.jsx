@@ -32,6 +32,7 @@ function Nav() {
                     <button onClick={handleSearch} className="hidden md:block hover:text-gray-300 transition">
                         <Search size={24}/>
                     </button>
+                    
                 </div>
                 
 

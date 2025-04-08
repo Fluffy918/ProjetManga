@@ -27,7 +27,6 @@ function Menu() {
 
     return (
         <div>
-            <h2>Résultats :</h2>
             <ul>
                 {mangas.map((manga) => (
                     <li key={manga.id}>{manga.titre}</li>
