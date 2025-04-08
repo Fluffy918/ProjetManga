@@ -41,3 +41,29 @@
 .chapitres-list a:hover {
     text-decoration: underline;
 }
+
+.manga-header {
+    display:  flex;
+    gap: 20px;
+    background-color: #f1f5f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    align-items: flex-start;
+}
+
+.manga-cover {
+    width: 160px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.manga-description h3 {
+    margin: 0 0 10px;
+}
+
+.manga-description p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}

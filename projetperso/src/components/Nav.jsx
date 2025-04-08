@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Menu, X, Search } from "lucide-react"
-import "../style.css" 
+import "../Nav.css" 
 
 
 
@@ -9,19 +9,20 @@ import "../style.css"
 function Nav() {
     const [isOpen, setIsOpen] = useState(false)
     const [searchQuery, setSearchQuery] = useState("")
+    const navigate = useNavigate()
 
     function handleSearch() {
         if (searchQuery.trim()) {
-            window.location.href = `/mangas?search=${encodeURIComponent(searchQuery.trim())}`
+            navigate(`/mangas?search=${encodeURIComponent(searchQuery.trim())}`)
         }
     }
     
     return(
-        <nav className="bg-gray-900 text-white p-4 shadow-lg fixed w-full top-0 z-50">
-            <div className="container mx-auto flex justify-between items-center">
-                <h1 className="text-2x1 font-bold">Scan VF</h1>
+        <nav className="nav">
+            <div className="nav-container">
+                <h1 className="logo">Scan VF</h1>
                 
-                <ul className="hidden md:flex gap-6 text-lg">
+                <ul className="nav-links">
                     <li><Link to="/mangas" className="hover:text-gray-300 transition">Accueil</Link></li>
                     <li><Link to="/mangas" className="hover:text-gray-300 transition">Annuaire des Mangas</Link></li>
                     <li><Link to="/mangas" className="hover:text-gray-300 transition">Derniers chapitres</Link></li>
@@ -36,16 +37,16 @@ function Nav() {
                 </div>
                 
 
-                <button className="md:hidden focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
+                <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? <X size={28}/> : <Menu size={28}/>}
                 </button>
             </div>
 
             {isOpen && (
-                <ul className="md:hidden flex flex-col bg-gray-800 p-4 space-y-2">
-                    <li><Link to="/" className="block py-2 hover:text-gray-300">Accueil</Link></li>
-                    <li><Link to="/mangas" className="block py-2 hover:text-gray-300">Annuaire des Mangas</Link></li>
-                    <li><Link to="/manga" className="block py-2 hover:text-gray-300">Derniers chapitres</Link></li>
+                <ul className="mobile-menu">
+                    <li><Link to="/" >Accueil</Link></li>
+                    <li><Link to="/mangas" >Annuaire des Mangas</Link></li>
+                    <li><Link to="/manga" >Derniers chapitres</Link></li>
                 </ul>
             )}
         </nav>

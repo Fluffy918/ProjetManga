@@ -62,6 +62,18 @@ app.get('/api/mangas/:mangaId', (req, res) => {
     })
 })
 
+app.get('/api/mangas/:mangaId/info', (req, res) => {
+    const mangaId = req.params.mangaId
+    const query = 'SELECT * FROM mangas WHERE id = ?'
+
+    db.query(query, [mangaId], (err, results) => {
+        if (err) return res.status(500).json({error: "Erreur serveur"});
+        if (results.length === 0) return res.status(404).json({error: "Manga non trouvé"});
+
+        res.json(results[0])
+    })
+})
+
 //app.get('/api/mangas/:mangaId', (req, res) => {
 //    const mangaId = req.params.mangaId
 //    console.log("mangaId reçu :", mangaId);

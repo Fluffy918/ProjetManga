@@ -9,13 +9,20 @@ function Chapitres() {
     console.log("mangaId récupéré: ", mangaId);
     
     const [chapitres, setChapitres] = useState([])
+    const [mangaInfo, setMangaInfo] = useState(null)
 
     useEffect(() => {
         if (mangaId) {
             fetch(`http://localhost:5174/api/mangas/${mangaId}`)
-            .then((res) => res.json())
-            .then(data => setChapitres(data))
-            .catch((error) => console.error("Erreur lors de la récupération des chapitres:", error))
+                .then((res) => res.json())
+                .then(data => setChapitres(data))
+                .catch((error) => console.error("Erreur lors de la récupération des chapitres:", error));
+            
+            fetch(`http://localhost:5174/api/mangas/${mangaId}/info`)
+                .then((res) => res.json())
+                .then((data) => setMangaInfo(data))
+                .catch((error) => console.error("Erreur lors de la récupération des infos du mangas", error)
+                )
         } else {
             console.error("mangaId is undifined");
         }
@@ -31,6 +38,15 @@ function Chapitres() {
                 <h2>
                     Liste des chapitres
                 </h2>
+                {mangaInfo && (
+                    <div className="manga-header">
+                        <img src={mangaInfo.couverture} alt={mangaInfo.titre} className="manga-cover"/>
+                        <div className="manga-description">
+                            <h3>{mangaInfo.titre}</h3>
+                            <p>{mangaInfo.description}</p>
+                        </div>
+                    </div>
+                )}
                 <ul className="chapitres-list">
                     {chapitres.map(chapitre => (
                         <li key={chapitre.id}>

@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "./Nav";
 import Menu from "./Menu";
 import MangaList from "./MangasList";
+import '../style.css'
 
 
 function Main() {
