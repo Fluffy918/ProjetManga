@@ -1,0 +1,36 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.manga-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 16px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.manga-card:hover{
+    transform: translateY(-5px);
+}
+
+.manga-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.manga-card h3 {
+    color: #28a745;
+    margin: 0 0 5px;
+}
+
+.manga-card p {
+    font-size: 14px;
+    margin: 3px 0;
+}

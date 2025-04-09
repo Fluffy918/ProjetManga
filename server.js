@@ -76,6 +76,35 @@ app.get('/api/mangas/annuaire', async (req, res) => {
 })
 
 app.get('/api/mangas/annuaire/:lettre', async (req, res) => {
+    const lettre = req.params.lettre
+    try {
+        const [rows] = await pool.query(
+            "SELECT * FROM mangas WHERE titre LIKE ? ORDER BY titre ASC",
+            [`${lettre}`]
+        )
+        res.json(rows)
+    } catch (error) {
+        console.error("Erreur du chargement de l'alphabet", error)
+        res.status(500).json({message: "Erreur serveur"})
+        
+    }
+})
+
+app.get('/api/mangas/annuaire/:genres', async (req, res) => {
+    const genre = req.params.genres
+    try {
+        const [rows] = await pool.query(
+            'SELECT * FROM mangas WHERE genres LIKE ? ORDER BY titre ASC',
+            [`%${genre}%`]
+        )
+        res.json(rows)
+    } catch (error) {
+        console.error("Erreur du chargement des genres", error)
+        res.status(500).json({message: "Erreur serveur"})    
+    }
+})
+
+app.get('/api/mangas/annuaire/:lettre', async (req, res) => {
     const lettre = req.params.lettre 
     try {
         const [rows] = await pool.query('SELECT * FROM mangas WHERE titre LIKE ? ORDER BY titre ASC', [`${lettre}`])

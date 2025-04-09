@@ -24,7 +24,7 @@ function Nav() {
                 
                 <ul className="nav-links">
                     <li><Link to="/mangas" className="hover:text-gray-300 transition">Accueil</Link></li>
-                    <li><Link to="/mangas" className="hover:text-gray-300 transition">Annuaire des Mangas</Link></li>
+                    <li><Link to="/mangas/annuaire" className="hover:text-gray-300 transition">Annuaire des Mangas</Link></li>
                     <li><Link to="/mangas" className="hover:text-gray-300 transition">Derniers chapitres</Link></li>
                 </ul>
 
