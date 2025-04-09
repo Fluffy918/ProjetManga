@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../MangasList.css"
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
@@ -7,14 +8,30 @@ import Footer from "./Footer";
 
 function MangaList() {
     const [mangas, setMangas] = useState([])
+    const location = useLocation()
+
+    const searchParams = new URLSearchParams(location.search)
+    const search = searchParams.get('search')
+
 
     useEffect(() => {
-        fetch('http://localhost:5174/mangas')
-            .then(res => res.json())
-            .then(data => setMangas(data))
-            .catch(error => console.error('Erreur lors du chargement du mangas:', error)
-            )
-    }, [])
+        const fetchData = async () => {
+            const url = search
+                ? `http://localhost:5174/api/search?q=${search}`
+                : `http://localhost:5174/mangas`;
+            
+            try {
+                const res = await fetch(url)
+                const data = await res.json()
+                console.log("Résultat recherche :", data)
+                setMangas(data)
+            } catch (error) {
+                console.error('Erreur lors du chargement du mangas: ', error);
+            }  
+        }
+
+        fetchData()
+    }, [search])
 
     return (
         <>

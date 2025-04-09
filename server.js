@@ -78,6 +78,27 @@ app.get('/api/mangas/:mangaId/info', (req, res) => {
     })
 })
 
+app.get('/api/mangas/search', (req, res) => {
+    const query = req.query.q 
+
+    if (!query) return res.status(400).json({error: "Aucun mot clé fourni"});
+
+    const sql = "SELECT * FROM mangas WHERE titre LIKE ?"
+    const values = [`%${query}%`]
+    
+    db.query(sql, values, (err, results) => {
+        if (err) {
+            console.error('Erreur SQL: ', err);
+            return res.status(500).json({error: "Erreur serveur"})
+        }
+
+        res.json(results)
+    })
+    
+        
+    
+})
+
 //app.get('/api/mangas/:mangaId', (req, res) => {
 //    const mangaId = req.params.mangaId
 //    console.log("mangaId reçu :", mangaId);
