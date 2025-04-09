@@ -4,10 +4,14 @@ import { fileURLToPath } from "url"
 import pool from "./database/bdd.js"
 import mysql from "mysql2"
 import cors from "cors"
+import { resolve } from "path"
 import { error } from "console"
 
 const __filename = fileURLToPath(import.meta.url) // Utilise import.meta.url pour obtenir l'URL du fichier
 const __dirname = path.dirname(__filename) // // Utilise path.dirname pour obtenir le répertoire
+
+const scriptLaunched = resolve(process.argv[1])
+const serverFile = fileURLToPath(import.meta.url)
 
 const app = express();
 //const port = 3000
@@ -47,7 +51,7 @@ app.get('/api/mangas/:mangaId', (req, res) => {
     const mangaId = req.params.mangaId
     console.log("mangaId reçu :", mangaId);
     
-    const query = 'SELECT * FROM chapitres WHERE manga_id = ?'
+    const query = 'SELECT * FROM chapitres WHERE manga_id = ? ORDER BY numero DESC'
     db.query(query, [mangaId], (err, results) => {
         if (err) {
             console.error(err);
@@ -121,7 +125,7 @@ app.post('/api/mangas', async (req, res) => {
 
 const PORT = 5174
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (scriptLaunched === serverFile) {
     app.listen(PORT, () => {
         console.log(`Serveur démarré sur http://localhost:${PORT}`);
         

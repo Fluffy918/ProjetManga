@@ -15,7 +15,10 @@ function Chapitres() {
         if (mangaId) {
             fetch(`http://localhost:5174/api/mangas/${mangaId}`)
                 .then((res) => res.json())
-                .then(data => setChapitres(data))
+                .then(data => {
+                    const chapitresTries = data.sort((a, b) => b.numero - a.numero)
+                    setChapitres(data)
+                })
                 .catch((error) => console.error("Erreur lors de la récupération des chapitres:", error));
             
             fetch(`http://localhost:5174/api/mangas/${mangaId}/info`)

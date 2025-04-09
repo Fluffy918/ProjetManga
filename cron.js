@@ -2,7 +2,7 @@ import cron from 'node-cron'
 import { exec } from 'child_process'
 import { error } from 'console'
 import { stderr, stdout } from 'process'
-
+import db from './server'
 // Planification tout les dimanches à 16h00
 cron.schedule('0 16 * * 0', () => {
     console.log('Exécution du script de scraping pour One Piece...')
@@ -18,9 +18,7 @@ cron.schedule('0 16 * * 0', () => {
         }
         console.log(`Script exécuté avec succès: \n${stdout}`);
         
-
     })
-    
 })
 
 console.log('Cron démarré. En attente du dimanche 16h00...');
