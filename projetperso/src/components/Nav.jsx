@@ -28,13 +28,16 @@ function Nav() {
                     <li><Link to="/mangas" className="hover:text-gray-300 transition">Derniers chapitres</Link></li>
                 </ul>
 
-                <div className="search-container">
+                <form onSubmit={(e) => {
+                    e.preventDefault()
+                    handleSearch()
+                }} className="search-container">
                     <input type="text" placeholder="Rechercher un manga..." className="search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
                     <button onClick={handleSearch} className="hidden md:block hover:text-gray-300 transition">
                         <Search size={24}/>
                     </button>
                     
-                </div>
+                </form>
                 
 
                 <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>

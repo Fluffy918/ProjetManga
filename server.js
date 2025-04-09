@@ -47,6 +47,24 @@ app.get('/mangas', async (req, res) => {
     }
 })
 
+app.get('/api/mangas/search', async (req, res) => {
+    const search = req.query.q
+    console.log("Recherche reçue: ", search);
+    
+    try {
+        const [rows] = await pool.query(
+            "SELECT * FROM mangas WHERE titre LIKE ?",
+            [`%${search}%`]
+        )
+
+        console.log("Résultats trouvés: ", rows);
+        res.json(rows)
+    } catch (error) {
+        console.error("Erreur dans la recherche: ", error);
+        res.status(500).json({message: "Erreur serveur"})
+    }   
+})
+
 app.get('/api/mangas/:mangaId', (req, res) => {
     const mangaId = req.params.mangaId
     console.log("mangaId reçu :", mangaId);
@@ -78,26 +96,7 @@ app.get('/api/mangas/:mangaId/info', (req, res) => {
     })
 })
 
-app.get('/api/mangas/search', (req, res) => {
-    const query = req.query.q 
 
-    if (!query) return res.status(400).json({error: "Aucun mot clé fourni"});
-
-    const sql = "SELECT * FROM mangas WHERE titre LIKE ?"
-    const values = [`%${query}%`]
-    
-    db.query(sql, values, (err, results) => {
-        if (err) {
-            console.error('Erreur SQL: ', err);
-            return res.status(500).json({error: "Erreur serveur"})
-        }
-
-        res.json(results)
-    })
-    
-        
-    
-})
 
 //app.get('/api/mangas/:mangaId', (req, res) => {
 //    const mangaId = req.params.mangaId
