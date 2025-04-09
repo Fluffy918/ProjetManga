@@ -2,9 +2,9 @@ import axios from 'axios'
 import * as cheerio from 'cheerio'
 import db from './server.js'
 
-const mangaId = 10
+const mangaId = 9
 
-const URL = 'https://www.scan-vf.net/boruto'
+const URL = 'https://www.scan-vf.net/solo-leveling'
 
 async function chapitresExisteDeja(numero) {
     const [rows] = await db.promise().query(
@@ -14,14 +14,14 @@ async function chapitresExisteDeja(numero) {
     return rows.length > 0
 }
 
-async function scrapeChapitresBoruto() {
+async function scrapeChapitresSl() {
     try {
         const {data} = await axios.get(URL)
         const $ = cheerio.load(data)
 
         const chapitres = []
 
-        $('a[href*="/boruto/chapitre-"]').each((index, element) => {
+        $('a[href*="/solo-leveling/chapitre-"]').each((index, element) => {
             const titreComplet = $(element).text().trim()
             const href = $(element).attr('href')
             const match = titreComplet.match(/(\d+)/)
@@ -61,4 +61,4 @@ async function scrapeChapitresBoruto() {
     }
 }
 
-scrapeChapitresBoruto()
+scrapeChapitresSl()
