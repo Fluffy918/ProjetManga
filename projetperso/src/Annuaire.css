@@ -1,0 +1,47 @@
+.annuaire-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    align-items: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.manga-card {
+    display: flex;
+    gap: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.cover {
+    width: 120px;
+    height: auto;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #f1f1f1;
+    padding: 1rem;
+    float: right;
+}
+
+.alphabet, .categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rrem;
+}

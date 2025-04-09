@@ -65,6 +65,28 @@ app.get('/api/mangas/search', async (req, res) => {
     }   
 })
 
+app.get('/api/mangas/annuaire', async (req, res) => {
+    try {
+        const [rows] = await pool.query('SELECT * FROM mangas ORDER BY titre ASC')
+        res.json(rows)
+    } catch (error) {
+        console.error("Erreur lors de la récupération de l'annuaire des mangas:", error)
+        res.status(500).json({message: "Erreur serveur"})
+    }
+})
+
+app.get('/api/mangas/annuaire/:lettre', async (req, res) => {
+    const lettre = req.params.lettre 
+    try {
+        const [rows] = await pool.query('SELECT * FROM mangas WHERE titre LIKE ? ORDER BY titre ASC', [`${lettre}`])
+        res.json(rows)
+    } catch (error) {
+        console.error("Erreur du filtrage alphabétique", error)
+        res.status(500).json({message: "Erreur serveur"})
+        
+    }
+})
+
 app.get('/api/mangas/:mangaId', (req, res) => {
     const mangaId = req.params.mangaId
     console.log("mangaId reçu :", mangaId);
