@@ -6,11 +6,11 @@ function Filters({onLetterClick}) {
 
     useEffect(() => {
         fetch("http://localhost:5174/api/alphabet")
-            .then(res => res.json())
-            .then(data => setAlphabet(data))
-            .catch(err => console.error("Erreur du chargement de l'alphabet", err)
-            )
-    }, [])
+        .then(res => res.json())
+        .then(data => setAlphabet(data))
+        .catch(err => console.error("Erreur du chargement de l'alphabet", err)
+        )
+        }, [])
 
     return(
         <>
