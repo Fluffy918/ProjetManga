@@ -116,6 +116,23 @@ app.get('/api/mangas/annuaire/:lettre', async (req, res) => {
     }
 })
 
+app.get('/api/mangas/derniers', async (req, res) => {
+    try {
+        const [rows] = await pool.query(`
+            SELECT c.id, c.manga_id, c.numero, c.titre, c.date_sortie, m.titre AS titre_manga
+            FROM chapitres c
+            JOIN mangas m ON c.manga_id = m.id
+            ORDER BY c.date_sortie DESC
+            LIMIT 50
+        `)
+        res.json(rows)
+    } catch (error) {
+        console.error("Erreur lors de la récupération des dernier chapitres", error)
+        res.status(500).json({message: "Erreur serveur"})
+        
+    }
+})
+
 app.get('/api/mangas/:mangaId', (req, res) => {
     const mangaId = req.params.mangaId
     console.log("mangaId reçu :", mangaId);

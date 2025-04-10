@@ -31,7 +31,6 @@ function MainGrid() {
                     <Link to={`/mangas/${manga.id}`}>
                         <img src={manga.couverture} alt={manga.titre} />
                     </Link>
-                    
                     <h3>{manga.titre}</h3>
                     <p>{manga.description}</p>
                 </div>

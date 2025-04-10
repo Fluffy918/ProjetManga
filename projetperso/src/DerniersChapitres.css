@@ -1,0 +1,50 @@
+.derniers-container {
+    padding: 2rem;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+hr {
+    margin-bottom: 1.5rem;
+    border: none;
+    border-top: 2px solid #ddd;
+}
+
+.chapitre-liste {
+    list-style: none;
+    padding: 0;
+}
+
+.chapitre-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.chapitre-gauche {
+    display: flex;
+    flex-direction: column;
+}
+
+.manga-nom {
+    color: green;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.chapitre-titre {
+    margin-top: 4px;
+    font-size: 0.95rem;
+}
+
+.chapitre-droite {
+    color: #444;
+    font-size: 0.9rem;
+}
