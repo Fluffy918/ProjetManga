@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "../MainGrid.css"
 
 
@@ -27,7 +28,10 @@ function MainGrid() {
         <div className="grid-container">
             {mangas.map(manga => (
                 <div key={manga.id} className="manga-card">
-                    <img src={manga.couverture} alt={manga.titre} />
+                    <Link to={`/mangas/${manga.id}`}>
+                        <img src={manga.couverture} alt={manga.titre} />
+                    </Link>
+                    
                     <h3>{manga.titre}</h3>
                     <p>{manga.description}</p>
                 </div>
