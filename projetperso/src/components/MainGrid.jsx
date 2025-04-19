@@ -15,7 +15,7 @@ function MainGrid() {
         if (lettre) {
             url = `http://localhost:5174/api/mangas/annuaire/${lettre}`
         } else if (genre) {
-            url = `http://localhost:5174/api/mangas/genre/${genre}`
+            url = `http://localhost:5174/api/mangas/annuaire/${genre}`
         }
 
         fetch(url)
