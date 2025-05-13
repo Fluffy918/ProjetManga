@@ -213,7 +213,9 @@ app.post('/api/mangas', async (req, res) => {
 
 const PORT = process.env.PORT || 5174
 
-if (scriptLaunched === serverFile) {
+//  scriptLaunched === serverFile
+
+if (import.meta.url === `file://${process.argv[1]}`) {
     app.listen(PORT, () => {
         console.log(`Serveur démarré sur http://localhost:${PORT}`);
         
