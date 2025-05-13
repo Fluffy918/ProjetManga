@@ -211,7 +211,7 @@ app.post('/api/mangas', async (req, res) => {
 
 
 
-const PORT = 5174
+const PORT = process.env.PORT || 5174
 
 if (scriptLaunched === serverFile) {
     app.listen(PORT, () => {
