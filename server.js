@@ -213,6 +213,7 @@ app.post('/api/mangas', async (req, res) => {
 
 const PORT = process.env.PORT || 5174
 
+// Vérifie si le script est lancé directement ou s'il est importé
 //  scriptLaunched === serverFile
 
 if (import.meta.url === `file://${process.argv[1]}`) {
