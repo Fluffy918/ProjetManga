@@ -184,9 +184,9 @@ app.get('/api/mangas/:mangaId/info', (req, res) => {
 //    })
 //})
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'projetperso', 'dist')))
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'))
+    res.sendFile(path.join(__dirname, 'projetperso', 'dist', 'index.html'))
 })
 app.post('/api/mangas', async (req, res) => {
     try {
@@ -216,12 +216,13 @@ const PORT = process.env.PORT || 5174
 // Vérifie si le script est lancé directement ou s'il est importé
 //  scriptLaunched === serverFile
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-    app.listen(PORT, () => {
+app.listen(PORT, () => {
         console.log(`Serveur démarré sur http://localhost:${PORT}`);
         
-    })
-}
+})
+//if (import.meta.url === `file://${process.argv[1]}`) {
+    
+//}
 
 
 
